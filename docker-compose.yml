@@ -16,7 +16,7 @@ services:
     #   - "9000:9000"                                           # To change the externally exposed port, change to: $custom_port:9000
     networks:
       - listmonk
-    hostname: listmonk.example.com                            # Recommend using FQDN for hostname
+    hostname: ls.geodes.ai                            # Recommend using FQDN for hostname
     depends_on:
       - db
     command: [sh, -c, "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''"]
