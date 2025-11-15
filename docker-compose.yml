@@ -12,8 +12,8 @@ services:
     image: listmonk/listmonk:latest
     container_name: listmonk_app
     restart: unless-stopped
-    ports:
-      - "9000:9000"                                           # To change the externally exposed port, change to: $custom_port:9000
+    # ports:
+    #   - "9000:9000"                                           # To change the externally exposed port, change to: $custom_port:9000
     networks:
       - listmonk
     hostname: listmonk.example.com                            # Recommend using FQDN for hostname
@@ -63,8 +63,24 @@ services:
         source: listmonk-data
         target: /var/lib/postgresql/data
 
+  caddy:
+    image: caddy:latest
+    container_name: listmonk_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - listmonk
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
 networks:
   listmonk:
 
 volumes:
   listmonk-data:
+  caddy_data:
+  caddy_config:

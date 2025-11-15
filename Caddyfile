@@ -1,0 +1,3 @@
+ls.geodes.ai {
+    reverse_proxy listmonk_app:9000
+}
